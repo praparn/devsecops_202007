@@ -1,0 +1,50 @@
+Link for download:
+1. Check GoogleSheet for check information about your machine and your "docker_lab" (For MAC OS X) or "docker_lab.ppk" (For Windows)
+2. Check Document for connect to your AWS
+============================================================================================
+Lab Description
+============================================================================================
+Machine name		            	   Roles:						IP Address: (Private)		IP Address: (Public)       SSH
+Training_DevSecOps_StudentGX_1      Client/Attacker			10.0.1.X 					   X.X.X.X   	               ssh -i "docker_lab.pem" ubuntu@X.X.X.X
+Training_DevSecOps_StudentGX_2      Application Machine     10.0.1.X 				      X.X.X.X                    ssh -i "docker_lab.pem" ubuntu@X.X.X.X      
+============================================================================================
+
+============================================================================================
+Step 1: Install require component for remote (Client/Attacker)
+============================================================================================
+1. SSH/Putty to "Load Test Machine" for operate with command:
+   ssh -i docker_lab.pem ubuntu@<Public IP Address> or Putty
+
+   Ex:
+   ssh -i "docker_lab.pem" ubuntu@52.221.254.40
+
+2. Install VNC Server and Desktop:
+   sudo su -
+   chmod +x /tmp/setup.sh
+   /tmp/setup.sh
+   exit
+
+3. After finished. Initial vncserver configuration by command:
+   vncserver :1
+      password:   ==> input "P@ssw0rd" on twice time
+   vncserver -kill :1
+
+4. Download vncconfiguration and apply by command:
+   curl https://raw.githubusercontent.com/praparn/sourcesetup/master/xstartup > /home/ubuntu/.vnc/xstartup
+
+5. Start VNCServer again with remote option
+   vncserver -geometry 1600x900 :1
+
+6. 
+
+4. Clone workshop to aws machine by command: 
+    cd ~/
+    git clone https://github.com/praparn/docker-workshop-042020.git
+
+   *Remark: In case you need to refresh workshop please kindly operate command below:
+   cd ~/
+   rm -rf ./docker-workshop-042020
+   git clone https://github.com/praparn/docker-workshop-042020.git
+
+5. Now all workshop is on "/home/ubuntu/docker-workshop-042020"
+   ls -lh ~/
